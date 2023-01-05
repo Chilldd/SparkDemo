@@ -1,6 +1,7 @@
 package com.yug.core.jdbc;
 
 import com.yug.constants.Constants;
+import com.yug.utils.SparkUtils;
 import org.apache.spark.SparkConf;
 import org.apache.spark.sql.SparkSession;
 
@@ -15,18 +16,7 @@ import java.util.Properties;
 public class SqlServerJdbcApp {
     public static void main(String[] args) {
         System.setProperty("HADOOP_USER_NAME", "root");
-
-        SparkConf conf = new SparkConf()
-                .setAppName("JDBC SQL")
-                .setMaster(String.format("spark://%s", Constants.SPARK_ADDRESS))
-                .set("spark.submit.deployMode", "client")
-                .set("spark.executor.cores", "1")
-                .set("spark.executor.memory", "1024M")
-                .set("spark.driver.host", Constants.LOCALHOST_IP);
-
-        SparkSession spark = SparkSession.builder()
-                .config(conf)
-                .getOrCreate();
+        SparkSession spark = SparkUtils.buildDefaultSparkSession("SQLServer JDBC");
 
         Properties properties = new Properties();
         properties.setProperty("user", "sa");

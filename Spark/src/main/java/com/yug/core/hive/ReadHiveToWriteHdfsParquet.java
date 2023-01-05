@@ -1,6 +1,7 @@
 package com.yug.core.hive;
 
 import com.yug.constants.Constants;
+import com.yug.utils.SparkUtils;
 import org.apache.spark.SparkConf;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -16,22 +17,10 @@ import java.util.UUID;
  * @date 2022/12/15 15:23
  */
 
-public class ReadHiveToHdfsParquet {
+public class ReadHiveToWriteHdfsParquet {
     public static void main(String[] args) {
         System.setProperty("HADOOP_USER_NAME", "root");
-
-        SparkConf conf = new SparkConf()
-                .setAppName("Hive SQL")
-                .setMaster(String.format("spark://%s", Constants.SPARK_ADDRESS))
-                .set("spark.submit.deployMode", "client")
-                .set("spark.executor.cores", "1")
-                .set("spark.executor.memory", "1024M")
-                .set("spark.driver.host", Constants.LOCALHOST_IP);
-
-        SparkSession spark = SparkSession.builder()
-                .config(conf)
-                .enableHiveSupport()
-                .getOrCreate();
+        SparkSession spark = SparkUtils.buildHiveSparkSession("Read Hive Data To HDFS Parquet File");
 
         // 执行HiveSQL，将查询结果转换为Spark表
         spark.sql("select * from ods_di_asddd;")
