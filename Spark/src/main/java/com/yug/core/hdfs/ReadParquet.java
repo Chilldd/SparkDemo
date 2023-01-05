@@ -17,7 +17,7 @@ import java.util.UUID;
  */
 public class ReadParquet {
     public static void main(String[] args) {
-        System.setProperty("HADOOP_USER_NAME", "root");
+        SparkUtils.setHadoopUser();
         SparkSession spark = SparkUtils.buildDefaultSparkSession("Read HDFS Parquet File");
 
         spark.read()

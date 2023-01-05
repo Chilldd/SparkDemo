@@ -13,7 +13,7 @@ import org.apache.spark.sql.SparkSession;
  */
 public class ReadAvro {
     public static void main(String[] args) {
-        System.setProperty("HADOOP_USER_NAME", "root");
+        SparkUtils.setHadoopUser();
         SparkSession spark = SparkUtils.buildDefaultSparkSession("Read HDFS Avro File");
 
         spark.read()

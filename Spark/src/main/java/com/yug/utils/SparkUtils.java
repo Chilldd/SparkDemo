@@ -12,6 +12,10 @@ import org.apache.spark.sql.SparkSession;
  */
 public class SparkUtils {
 
+    public static void setHadoopUser() {
+        System.setProperty("HADOOP_USER_NAME", "root");
+    }
+
     public static SparkSession buildDefaultSparkSession(String jobName) {
         return SparkSession.builder()
                 .config(buildDefaultSparkConf(jobName))

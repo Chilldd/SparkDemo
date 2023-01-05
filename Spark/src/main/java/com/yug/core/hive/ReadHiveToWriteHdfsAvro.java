@@ -17,7 +17,7 @@ import java.util.UUID;
  */
 public class ReadHiveToWriteHdfsAvro {
     public static void main(String[] args) {
-        System.setProperty("HADOOP_USER_NAME", "root");
+        SparkUtils.setHadoopUser();
         SparkSession spark = SparkUtils.buildHiveSparkSession("Read Hive Data To HDFS Avro File");
 
         // 执行HiveSQL，将查询结果转换为Spark表

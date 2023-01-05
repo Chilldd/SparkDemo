@@ -15,7 +15,7 @@ import java.util.Properties;
  */
 public class SqlServerJdbcApp {
     public static void main(String[] args) {
-        System.setProperty("HADOOP_USER_NAME", "root");
+        SparkUtils.setHadoopUser();
         SparkSession spark = SparkUtils.buildDefaultSparkSession("SQLServer JDBC");
 
         Properties properties = new Properties();
