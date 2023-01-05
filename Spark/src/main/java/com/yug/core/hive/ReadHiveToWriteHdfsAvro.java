@@ -12,7 +12,8 @@ import java.util.UUID;
 /**
  * @author gy
  * @version 1.0
- * @description TODO
+ * @description 读取Hive数据，将数据通过Avro的格式写入到HDFS中
+ * ！Spark使用avro需要导入包org.apache.spark.spark-avro_2.12 (需要把包放到集群上)
  * @date 2023/1/3 16:15
  */
 public class ReadHiveToWriteHdfsAvro {
